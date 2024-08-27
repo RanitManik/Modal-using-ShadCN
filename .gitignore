@@ -47,3 +47,7 @@ Thumbs.db
 
 # package-lock
 package-lock.json
+
+# code editor and IDE config folders
+.vscode/
+.idea
