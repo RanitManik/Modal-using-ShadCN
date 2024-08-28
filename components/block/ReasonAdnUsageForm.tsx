@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 
-function Message() {
+function ReasonAdnUsageForm() {
     return (
         <Card className={`grid items-end gap-4 p-4 md:grid-cols-2`}>
             <div className={`grid gap-2`}>
@@ -42,4 +42,4 @@ function Message() {
     );
 }
 
-export default Message;
+export default ReasonAdnUsageForm;

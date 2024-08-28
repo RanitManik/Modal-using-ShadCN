@@ -14,12 +14,11 @@ import { Button } from "@/components/ui/button";
 import { Trash } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import ProductsComboBox from "@/components/block/ProductsComboBox";
-import SerialNumber from "@/components/block/SerialNumber";
 
-export default function ProductDetailsCard() {
+export default function ProductDetailsForm() {
     return (
         <Card
-            className={`grid gap-4 p-4 duration-200 animate-in fade-in slide-in-from-top`}
+            className={`grid gap-4 p-4 animate-in fade-in slide-in-from-top last:animate-none`}
         >
             <div className={`grid gap-2`}>
                 <Label>Product Name</Label>
@@ -56,9 +55,6 @@ export default function ProductDetailsCard() {
                         </SelectContent>
                     </Select>
                 </div>
-            </div>
-            <div>
-                <SerialNumber />
             </div>
         </Card>
     );

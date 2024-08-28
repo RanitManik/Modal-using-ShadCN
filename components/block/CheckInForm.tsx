@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import ProductDetailsCard from "@/components/block/ProductDetailsCard";
-import Message from "@/components/block/Message";
+import ReasonAdnUsageForm from "@/components/block/ReasonAdnUsageForm";
 import { PlusCircle } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
+import ProductDetailsForm from "@/components/block/ProductDetailsForm";
 
 export default function CheckInForm() {
-    const [products, setProducts] = useState([<ProductDetailsCard key={0} />]);
+    const [products, setProducts] = useState([<ProductDetailsForm key={0} />]);
 
     const addProduct = () => {
         setProducts([
-            <ProductDetailsCard key={products.length} />,
+            <ProductDetailsForm key={products.length} />,
             ...products,
         ]);
         toast.success("New Product Created");
@@ -38,7 +38,7 @@ export default function CheckInForm() {
                     </Card>
                     <div className={`grid gap-2`}>
                         <div
-                            className={`flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left`}
+                            className={`flex flex-col justify-between gap-4 md:flex-row md:items-center`}
                         >
                             <div>
                                 <h2 className={`text-xl font-semibold`}>
@@ -62,7 +62,7 @@ export default function CheckInForm() {
                             {products}
                         </div>
                     </div>
-                    <Message />
+                    <ReasonAdnUsageForm />
                 </div>
             </ScrollArea>
             <Separator />
