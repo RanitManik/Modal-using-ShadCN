@@ -21,7 +21,7 @@ export default function Modal() {
                 <Button variant="outline">Open Modal</Button>
             </DialogTrigger>
             <DialogContent
-                className="max-w-full animate-in fade-in md:max-w-[700px]"
+                className="max-h-screen overflow-y-auto lg:max-w-[1100px]"
                 onInteractOutside={(e) => e.preventDefault()}
             >
                 <DialogHeader className={`mb-2`}>
