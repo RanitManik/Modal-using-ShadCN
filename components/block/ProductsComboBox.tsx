@@ -67,7 +67,7 @@ const products = [
     },
 ];
 
-export default function ProductsComboBox({ id }: { id: number }) {
+export default function ProductsComboBox({ id }: { id: string }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("");
 

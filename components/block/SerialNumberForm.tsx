@@ -12,7 +12,7 @@ function SerialNumberForm() {
                 className={`h-[min(50svh,_600px)] pl-6 pr-6`}
             >
                 <h2
-                    className={`pb-3 text-2xl font-semibold leading-none tracking-tight`}
+                    className={`pb-3 text-xl font-semibold leading-none tracking-tight`}
                 >
                     Serial Numbers
                 </h2>
@@ -27,16 +27,13 @@ function SerialNumberForm() {
             <Separator />
             <div className={`flex gap-4 px-4`}>
                 <Button
-                    className={`text-base font-[500]`}
+                    className={`font-[500]`}
                     variant={`success`}
                     type="submit"
                 >
                     Save Serial Numbers
                 </Button>
-                <Button
-                    className={`text-base font-[500]`}
-                    variant={`destructive`}
-                >
+                <Button className={`font-[500]`} variant={`destructive`}>
                     Cancel
                 </Button>
             </div>

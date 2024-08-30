@@ -15,8 +15,8 @@ import ProductsComboBox from "@/components/block/ProductsComboBox";
 import { Separator } from "@/components/ui/separator";
 
 type ProductDetailsFormProps = {
-    id: number;
-    onDelete: (id: number) => void;
+    id: string;
+    onDelete: (id: string) => void;
 };
 
 export default function ProductDetailsForm({
@@ -26,13 +26,16 @@ export default function ProductDetailsForm({
     return (
         <Card className={`grid gap-4 p-4 animate-in fade-in`}>
             <div className={`relative grid gap-2`}>
-                <Label>Product {id + 1}</Label>
+                <Label>Product Name</Label>
                 <div className={`flex flex-col gap-4 lg:flex-row`}>
                     <ProductsComboBox id={id} />
                     <Button
                         aria-label={`delete`}
                         variant={`destructive`}
-                        onClick={() => onDelete(id)}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onDelete(id);
+                        }}
                     >
                         <Trash className={`mr-2 h-4 w-4`} />
                         Delete
@@ -66,7 +69,7 @@ export default function ProductDetailsForm({
                 </div>
             </div>
             <div className={`flex items-center justify-between gap-4`}>
-                <p className={`text-lg font-semibold`}>
+                <p className={`font-[500]`}>
                     Total Quantity: <span>{}</span>
                 </p>
                 <Button type={`button`} variant={`create`}>
@@ -76,17 +79,18 @@ export default function ProductDetailsForm({
             <Separator />
             <div className={`grid grid-cols-2 gap-4`}>
                 <div className={`grid gap-2`}>
-                    <Label htmlFor={`usage`}>Usage</Label>
+                    <Label htmlFor={`usage-${id}`}>Usage</Label>
                     <Input
+                        required
                         type="text"
-                        id="usage"
-                        name="usage"
+                        id={`usage-${id}`}
+                        name={`usage-${id}`}
                         placeholder="Where you want to use it"
                     />
                 </div>
                 <div className={`relative`}>
-                    <Label>Reason</Label>
-                    <Select required name={`reason`}>
+                    <Label htmlFor={`reason-${id}`}>Reason</Label>
+                    <Select required name={`reason-${id}`}>
                         <SelectTrigger>
                             <SelectValue placeholder="Select Reason" />
                         </SelectTrigger>

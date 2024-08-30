@@ -12,7 +12,7 @@ import SerialNumberForm from "@/components/block/SerialNumberForm";
 import DescriptionForm from "@/components/block/DescriptionForm";
 
 interface Product {
-    id: number;
+    id: string;
 }
 
 interface FormEvent extends React.FormEvent<HTMLFormElement> {}
@@ -22,8 +22,6 @@ const handleSubmit = (e: FormEvent, products: Product[]): void => {
     const formData = new FormData(e.target as HTMLFormElement);
     const adminName = formData.get("admin-id") as string;
     const createdAt = Date.now();
-    const usage = formData.get("usage") as string;
-    const reason = formData.get("reason") as string;
     const description = formData.get("description") as string;
 
     const productsData = products.map((product) => {
@@ -32,6 +30,8 @@ const handleSubmit = (e: FormEvent, products: Product[]): void => {
             productName: formData.get(`product-name-${product.id}`) as string,
             productQty: formData.get(`product-qty-${product.id}`) as string,
             storeName: formData.get(`store-${product.id}`) as string,
+            reason: formData.get(`reason-${product.id}`) as string,
+            usage: formData.get(`usage-${product.id}`) as string,
         };
     });
 
@@ -39,8 +39,6 @@ const handleSubmit = (e: FormEvent, products: Product[]): void => {
         adminName,
         createdAt,
         products: productsData,
-        usage,
-        reason,
         description: description,
     };
 
@@ -49,23 +47,30 @@ const handleSubmit = (e: FormEvent, products: Product[]): void => {
 };
 
 export default function CheckInForm(): JSX.Element {
-    const [products, setProducts] = useState<Product[]>([{ id: 0 }]);
+    const [products, setProducts] = useState<Product[]>([
+        { id: crypto.randomUUID() },
+    ]);
 
     const addProduct = (): void => {
-        setProducts([...products, { id: products.length }]);
-        toast.success("Product Added");
+        setProducts([...products, { id: crypto.randomUUID() }]);
     };
 
-    const deleteProduct = (id: number): void => {
+    const deleteProduct = (id: string): void => {
+        if (products.length === 1) {
+            toast.error("You must have at least one product");
+            return;
+        }
         setProducts(products.filter((product) => product.id !== id));
         toast.success("Product Deleted");
     };
 
     return (
-        <div className={`grid gap-4 lg:grid-cols-[auto,_1fr]`}>
-            <form
+        <form
+            onSubmit={(e) => handleSubmit(e, products)}
+            className={`grid gap-4 lg:grid-cols-[auto,_1fr]`}
+        >
+            <div
                 className={`grid gap-4 rounded-lg border py-4 lg:min-w-[650px]`}
-                onSubmit={(e) => handleSubmit(e, products)}
             >
                 <ScrollArea
                     type={`always`}
@@ -119,21 +124,18 @@ export default function CheckInForm(): JSX.Element {
                 <Separator />
                 <div className={`flex gap-4 px-4`}>
                     <Button
-                        className={`text-base font-[500]`}
+                        className={`font-[500]`}
                         variant={`success`}
                         type="submit"
                     >
                         Submit Check In
                     </Button>
-                    <Button
-                        className={`text-base font-[500]`}
-                        variant={`secondary`}
-                    >
+                    <Button className={`font-[500]`} variant={`secondary`}>
                         Close
                     </Button>
                 </div>
-            </form>
+            </div>
             <SerialNumberForm />
-        </div>
+        </form>
     );
 }
