@@ -13,12 +13,16 @@ import { Button } from "@/components/ui/button";
 import CheckInForm from "@/components/block/CheckInForm";
 
 export default function Modal() {
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant="outline">Open Modal</Button>
+                <Button
+                    className={`animate-border bg-white bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%]`}
+                >
+                    Open Modal
+                </Button>
             </DialogTrigger>
             <DialogContent
                 className="max-h-screen overflow-y-auto lg:max-w-[1100px]"
@@ -33,7 +37,7 @@ export default function Modal() {
                         below.
                     </DialogDescription>
                 </DialogHeader>
-                <CheckInForm />
+                <CheckInForm onClose={() => setOpen(false)} />
             </DialogContent>
         </Dialog>
     );
