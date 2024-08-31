@@ -28,7 +28,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import { useFormContext } from "@/context/FormSchema";
 
 interface CheckInFormProps {
@@ -53,6 +52,7 @@ export default function CheckInForm({ onClose }: CheckInFormProps) {
             ...prevProducts,
             [newProductId]: {},
         }));
+        toast.success("Product Added");
     };
 
     const deleteProduct = (id: string): void => {
@@ -64,7 +64,7 @@ export default function CheckInForm({ onClose }: CheckInFormProps) {
         const updatedProducts = { ...products };
         delete updatedProducts[id];
         setProducts(updatedProducts);
-        toast.success("Product Deleted");
+        toast.warning("Product Deleted");
     };
 
     const handleAddSerialNumbers = (productId: string) => {
@@ -95,11 +95,16 @@ export default function CheckInForm({ onClose }: CheckInFormProps) {
         setSelectedProductId(null);
     };
 
+    const handleError = (errors: any) => {
+        console.error(errors);
+        toast.error("Please fix the errors before submitting.");
+    };
+
     return (
         <Form {...form}>
             <form
-                onSubmit={form.handleSubmit(onSubmit)}
                 className="grid gap-4 lg:grid-cols-[auto,_1fr]"
+                onSubmit={form.handleSubmit(onSubmit, handleError)}
             >
                 <div className="grid gap-4 rounded-lg border py-4 lg:min-w-[650px]">
                     <ScrollArea

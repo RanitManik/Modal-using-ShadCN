@@ -62,6 +62,7 @@ export default function ProductDetailsForm({
                                     }
                                 />
                             </FormControl>
+                            <FormMessage />
                             <FormDescription>
                                 Total Quantity:{" "}
                                 <span>
@@ -69,7 +70,6 @@ export default function ProductDetailsForm({
                                         0}
                                 </span>
                             </FormDescription>
-                            <FormMessage />
                         </FormItem>
                     )}
                 />

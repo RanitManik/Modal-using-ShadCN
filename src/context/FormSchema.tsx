@@ -73,7 +73,7 @@ export const FormProvider = ({ children }: FormProviderProps): JSX.Element => {
     function onSubmit() {
         const values = form.getValues();
         console.log(values);
-        toast.success("Successfully submitted form");
+        toast.success("Successfully Checked In Products");
     }
 
     return (
