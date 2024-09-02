@@ -165,7 +165,7 @@ export default function CheckInForm({ onClose }: CheckInFormProps) {
                             </div>
                             <Button
                                 className="font-bold"
-                                variant="callToAction"
+                                variant="secondary"
                                 onClick={addProduct}
                                 type="button"
                                 disabled={isProductFormDisabled}

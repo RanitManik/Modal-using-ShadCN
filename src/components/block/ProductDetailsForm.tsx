@@ -102,7 +102,6 @@ export default function ProductDetailsForm({
             <div className="ml-auto">
                 <Button
                     type="button"
-                    variant="create"
                     onClick={onAddSerialNumbers}
                     disabled={!form.watch(`products.${id}.productQty`)}
                 >

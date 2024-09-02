@@ -18,11 +18,7 @@ export default function Modal() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button
-                    className={`animate-border bg-white bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-[length:400%_400%]`}
-                >
-                    Open Modal
-                </Button>
+                <Button className={`font-bold`}>Open Modal</Button>
             </DialogTrigger>
             <DialogContent
                 className="max-h-screen overflow-y-auto lg:max-w-[1100px]"
